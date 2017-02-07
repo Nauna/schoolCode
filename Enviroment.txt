@@ -1,0 +1,92 @@
+//by: Annahita Doulatshahi
+//500608597
+
+
+
+public class Environment {
+	
+	static private int[] score;
+	static private int[][] opCount;
+	static private double[][][] freqList;
+	
+
+	private static void printCurrentResults(int i){
+		 System.out.println("\n"+ "Round " + i + ":");
+		 System.out.println("Gready Score = " + score[0]);
+		 System.out.println("LinearPenalty score = " + score[1]);
+		 System.out.println("LinearInactive Score = " + score[2]);
+		 System.out.println("Random score = " + score[3]);
+		 
+		 
+		 //print optimal move
+		 for(int x=0;x<4;x++){
+			 System.out.println("\n Bot "+ x + ": ");
+			 System.out.println("________________");
+			 System.out.println("Rounds");
+			 System.out.println("              1     2     3     4     5     6     7     8     9    10 ");
+				 for(int n=0;n<10;n++){
+					 System.out.println("BanditArm "+ (n+1) + ": "+ String.format("%.1f", freqList[x][0][n]) + "  "+ String.format("%.1f", freqList[x][1][n])  + "  "+String.format("%.1f", freqList[x][2][n])  + "  "+String.format("%.1f", freqList[x][3][n]) + "  "+String.format("%.1f", freqList[x][4][n])  + "  "+ String.format("%.1f", freqList[x][5][n])  + "  "+ String.format("%.1f", freqList[x][6][n])  + "  "+ String.format("%.1f", freqList[x][7][n])  + "  "+ String.format("%.1f", freqList[x][8][n])  + "  "+ String.format("%.1f", freqList[x][9][n]) ); 
+				 }
+		 }
+	}
+		 
+    private static void countFreq(int iter, int round){
+    	 for(int x=0;x<4;x++){
+			 for(int j=0;j<10;j++){
+				 freqList[x][round][j]= ((opCount[x][j] / (double)iter)*100);
+			 }    
+		}
+	}
+    
+	private static void printOpening(){
+		System.out.println("Bot List");
+		System.out.println("------------------");
+		System.out.println("Bot 0 = o-Greedy");
+		System.out.println("Bot 1 = LinearRewardInaction");
+		System.out.println("Bot 2 = LinearRewardPenalty");
+		System.out.println("Bot 3 = RandomAgent");
+		
+		System.out.println("------------------");
+		System.out.println("Bandit Arm Prob of success ranked sequently by num. ex)Arm 1 has the greatest chance for a reward ");
+
+		
+	
+	}
+	 public static void main(String[] args) {
+		 printOpening();
+		 
+		 score = new int[4];
+		 opCount = new int[4][10];
+		 freqList = new double[4][10][10];//Three bots,10rounds,10arms
+		 Bandit b = new Bandit();
+
+		 LearnAgent[] agents = {new Greedy(), new Linear_RewardPenalty(),new Linear_RewardInaction(),new RandomAgent()};
+		 int i,k,reward=0;
+		
+		 for (i = 0; i < 10000; i++){
+			if( (i % 1000 == 0) && (i != 0))countFreq(i, (i/1000));
+			 
+			 //agent execution on round i
+			 for(int j = 0; j < 4 ; j++){
+				 k  = agents[j].chooseAction();
+				 if((k >= 0) && (k < 11)){
+					 opCount[j][k]+=1;
+					 reward = b.pullArm(k+1);
+					 }
+				 else 
+				 { //error check
+				 System.out.println("error in agent choice index");
+				 System.out.println("agent " + j + " error: 0=greedy,1=lrp,2=lri,3=random");
+				 System.out.println("action choice = " + k);
+				 }
+				 
+				 agents[j].processReward(reward);
+				 score[j] += reward;
+			 }
+			  
+		 }
+		 printCurrentResults(i);
+	 }
+
+}
+

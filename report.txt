@@ -1,0 +1,35 @@
+
+report.txt
+By:Annahita Doulatshahi
+500608597
+
+
+
+The below lists are the frequencies of the named algorithm choosing the optimal bandit arm
+o-greedy		91.5%-->91.6%-->91.3%-->91.3%-->91.5%-->91%-->91.1%-->91.1%-->91.2%-->91.3%
+Linear_RewardPenalty 	77.7%-->63.2%-->72.3%-->77.3%-->79.8%-->79.1%-->79.4%-->77.7%-->79.1%-->80.4%
+Linear_RewardInaction	87.6%-->73.2%-->54.6%-->41.2%-->33.1%-->33.6%-->39.1%-->36.8%-->34.9%-->31.5%
+
+Question: 
+Compare o-greedy learning algorithm with learning automata. What algorithm learns faster/better? Discuss briefly your results.
+
+Answer:
+agent = class object that runs a specific learning algorithm.
+
+The  Linear_RewardPenalty was by far the agent that produced the best results. It learned the fastest and the most consistently. 
+The Linear_RewardPenalty algorithm took in the most data in comparison to our other two algorithms, therefore giving it an advantage.
+
+Epsilon greedy occasionally got confused on which arm was the optimal arm, however this algorithm would decide early which it liked the 
+most.Epsilon in the greedy algorithm had a direct relation to the frequency of choosing our optimal bandit arm. (1-epsilon)=frequency of choosing best choice.
+
+The Linear_RewardInaction always found the optimal bandit arm however convergence was the slowest.
+
+I ran four agents, 1)greedy, 2)Linear_RewardPenalty, 3)Linear_RewardInaction and lastly 4) a completly RandomChoice agent. 
+
+The RandomChoice  agent did as it was suppose to and picked each k (Bandit Arm  = k ={1-10}) at a frequency of approximately 10%.
+
+Our winner the epsilon greedy, picked our best Bandit Arm( k=1), which had a reward probability of 70% with a frequency of 91% after 1000 iterations of game play(in Environment class). 
+
+
+
+

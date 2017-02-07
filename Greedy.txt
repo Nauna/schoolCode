@@ -1,0 +1,44 @@
+//By: Annahita Doulatshahi
+//500608597
+
+import java.util.concurrent.ThreadLocalRandom;
+
+public class Greedy implements LearnAgent{
+	static private int probBestChoice = 70;
+	//epsilon = 100-probBestChoice;
+	private int randomNum, index;
+	private double estimateReward;
+	private double[] actionList;
+	private int[] actionCount;
+	
+	public Greedy(){
+		
+		estimateReward = 0;
+		actionList = new double[10];
+		actionCount = new int[10];
+	}
+	
+	public int chooseAction(){	//pick a Bandit from 1-10
+		randomNum = ThreadLocalRandom.current().nextInt(1,101);
+		index = ThreadLocalRandom.current().nextInt(0,10);
+		
+		if (probBestChoice >= randomNum){
+			double max = 0;
+			for (int i = 0;i < 10;i++){
+				if (max < actionList[i]){
+					max=actionList[i];
+					index=i;
+				}
+			}
+		}
+		
+		actionCount[index]+=1;
+		return index;
+	}
+	
+	public void processReward(int reward){
+		estimateReward = actionList[index]; 
+		actionList[index] = estimateReward + ((1/actionCount[index])*(reward-estimateReward));
+	}
+	
+}

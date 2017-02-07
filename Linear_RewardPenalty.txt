@@ -1,0 +1,67 @@
+//By: Annahita Doulatshahi
+//500608597
+
+
+import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class Linear_RewardPenalty implements LearnAgent {
+
+		private double[] probList;
+		private int index;
+		private static double alpha1 = 0.1;
+		private static double beta1 = 0.1;
+		static private int probBestChoice = 90;
+		
+		public Linear_RewardPenalty (){
+			probList = new double[10];
+			Arrays.fill(probList,(1/10));
+			index =0;
+		} 
+		
+		public int chooseAction(){
+			int randomNum = ThreadLocalRandom.current().nextInt(1,101);
+			double max = 0;
+			index = ThreadLocalRandom.current().nextInt(0,10);
+			if (probBestChoice >= randomNum){
+				for(int i =0;i<10;i++){
+					if(max < probList[i]) {
+						max=probList[i];
+						index = i;
+					}
+				}
+			}
+				return index;
+
+
+			}
+		
+		public void processReward(int reward) {
+			if (reward > 0) success();
+			else failure();
+		}
+		
+		private void failure(){
+			for(int i =0;i<10;i++){
+				if (i == index)
+					probList[i]  = (1-beta1)*probList[i]; 
+				else
+					probList[i] = (beta1/9)+(1-beta1)*probList[i];
+			}
+		}
+		
+		private void success(){
+			double current;
+			current = probList[index];
+			for(int i =0;i<10;i++){
+				if (i == index)
+					probList[index] = current + (alpha1*(1-current)); 
+				else
+					probList[i] = (1-alpha1)*probList[i];
+			}
+		}
+
+		
+	}
+
+

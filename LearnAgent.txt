@@ -1,0 +1,12 @@
+//By: Annahita Doulatshahi
+//500608597
+
+
+public interface LearnAgent {
+
+	public int chooseAction();
+	
+	public void processReward(int reward);
+
+}
+

@@ -1,0 +1,15 @@
+//By: Annahita Doulatshahi
+//500608597
+
+
+import java.util.concurrent.ThreadLocalRandom;
+
+public class RandomAgent implements LearnAgent {
+	public int chooseAction(){
+		 return ThreadLocalRandom.current().nextInt(0,10);
+	}
+	
+	public void processReward(int reward){}
+
+
+}

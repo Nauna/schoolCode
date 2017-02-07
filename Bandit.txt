@@ -1,0 +1,58 @@
+//by: Annahita Doulatshahi
+//500608597
+
+
+import java.util.concurrent.ThreadLocalRandom;
+
+public class Bandit {
+
+private static int BANDIT_ONE_PROB =70;
+private static int BANDIT_TWO_PROB = 55;
+private static int BANDIT_THREE_PROB = 50;
+private static int BANDIT_FOUR_PROB = 45;
+private static int BANDIT_FIVE_PROB = 40;
+private static int BANDIT_SIX_PROB = 35;
+private static int BANDIT_SEVEN_PROB = 30;
+private static int BANDIT_EIGHT_PROB = 25;
+private static int BANDIT_NINE_PROB = 20;
+private static int BANDIT_TEN_PROB = 10;
+
+private int randomNum = 0;
+private int prob;
+
+public void pickAnArmBandit(int k){
+	//to compensate for array indexing
+	switch(k){
+	case 1 :  
+		prob = BANDIT_ONE_PROB; break;
+	case 2 :  
+		prob = BANDIT_TWO_PROB; break;
+	case 3 :  
+		prob = BANDIT_THREE_PROB; break;
+	case 4 :  
+		prob = BANDIT_FOUR_PROB; break;
+	case 5 :  
+		prob = BANDIT_FIVE_PROB; break;
+	case 6 : 
+		prob = BANDIT_SIX_PROB; break;
+	case 7 :  
+		prob = BANDIT_SEVEN_PROB; break;
+	case 8 :  
+		prob = BANDIT_EIGHT_PROB; break;
+	case 9 :  
+		prob = BANDIT_NINE_PROB; break;
+	case 10 :  
+		prob = BANDIT_TEN_PROB; break;	
+	}
+}
+public int pullArm(int k){
+	randomNum = ThreadLocalRandom.current().nextInt(0,101);//0 inclusive,101 exclusive
+	pickAnArmBandit(k);
+	if (prob >= randomNum){return 1;}
+	return 0;
+}
+	
+}
+
+
+

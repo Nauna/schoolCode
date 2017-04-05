@@ -1,6 +1,11 @@
 //by: Annahita Doulatshahi
-//500608597
+//Trying to solve for multi-arm bandit problem with three different algorithms.
 
+//Game setting: Enviroment object
+//Contains {main(),printCurrentResults(int i),printOpening()}
+//*******printOpening(): called once in main(), basically prints legend to the remaining outputs
+//*******printCurrentResults(int i): prints the current frequency of choosing a specific Bandit-arm for each agent 
+//*******main()
 
 
 public class Environment {
@@ -25,7 +30,17 @@ public class Environment {
 			 System.out.println("Rounds");
 			 System.out.println("              1     2     3     4     5     6     7     8     9    10 ");
 				 for(int n=0;n<10;n++){
-					 System.out.println("BanditArm "+ (n+1) + ": "+ String.format("%.1f", freqList[x][0][n]) + "  "+ String.format("%.1f", freqList[x][1][n])  + "  "+String.format("%.1f", freqList[x][2][n])  + "  "+String.format("%.1f", freqList[x][3][n]) + "  "+String.format("%.1f", freqList[x][4][n])  + "  "+ String.format("%.1f", freqList[x][5][n])  + "  "+ String.format("%.1f", freqList[x][6][n])  + "  "+ String.format("%.1f", freqList[x][7][n])  + "  "+ String.format("%.1f", freqList[x][8][n])  + "  "+ String.format("%.1f", freqList[x][9][n]) ); 
+					 System.out.print("BanditArm "+ (n+1) + ": ");
+					 System.out.print(String.format("%.1f", freqList[x][0][n]) + "  ");
+					 System.out.print(String.format("%.1f", freqList[x][1][n])  + "  ");
+					 System.out.print(String.format("%.1f", freqList[x][2][n])  + "  ");
+					 System.out.print(String.format("%.1f", freqList[x][3][n]) + "  ");
+					 System.out.print(String.format("%.1f", freqList[x][4][n])  + "  "); 
+					 System.out.print(String.format("%.1f", freqList[x][5][n])  + "  ");
+					 System.out.print(String.format("%.1f", freqList[x][6][n])  + "  ");
+					 System.out.print(String.format("%.1f", freqList[x][7][n])  + "  ");
+					 System.out.print(String.format("%.1f", freqList[x][8][n])  + "  "); 
+					 System.out.print(String.format("%.1f", freqList[x][9][n]) ); 
 				 }
 		 }
 	}

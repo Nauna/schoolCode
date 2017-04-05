@@ -1,5 +1,9 @@
 //by: Annahita Doulatshahi
-//500608597
+//Trying to solve for multi-arm bandit problem with three different algorithms.
+//Bandit() contains the probabilities of our Bandit object as well as two functions
+//********int pullArm(int) which returns a reward if the arm that was picked wins a random toss. 
+//****************s.t the toss is won with the arms specific probability of winning.
+//********pickAnArmBandit(int k) which sets the objects prob.ability to the specific arm
 
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -20,7 +24,7 @@ private static int BANDIT_TEN_PROB = 10;
 private int randomNum = 0;
 private int prob;
 
-public void pickAnArmBandit(int k){
+private void pickAnArmBandit(int k){
 	//to compensate for array indexing
 	switch(k){
 	case 1 :  
@@ -34,7 +38,7 @@ public void pickAnArmBandit(int k){
 	case 5 :  
 		prob = BANDIT_FIVE_PROB; break;
 	case 6 : 
-		prob = BANDIT_SIX_PROB; break;
+		prob = BANDIT_SIX_PROB; break;that 
 	case 7 :  
 		prob = BANDIT_SEVEN_PROB; break;
 	case 8 :  
